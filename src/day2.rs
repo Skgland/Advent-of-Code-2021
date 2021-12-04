@@ -1,9 +1,9 @@
 use std::str::FromStr;
 
 enum Direction {
-    FORWARD,
-    DOWN,
-    UP,
+    Forward,
+    Down,
+    Up,
 }
 
 impl FromStr for Direction {
@@ -11,9 +11,9 @@ impl FromStr for Direction {
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         Ok(match s {
-            "up" => Direction::UP,
-            "down" => Direction::DOWN,
-            "forward" => Direction::FORWARD,
+            "up" => Direction::Up,
+            "down" => Direction::Down,
+            "forward" => Direction::Forward,
             _ => return Err(()),
         })
     }
@@ -38,12 +38,12 @@ pub fn part1(input: &str) -> i32 {
     let iter = parse_input(input);
 
     let (depth, distance) = iter.fold((0, 0), |(depth, distance), (dir, dist)| match dir {
-        Direction::FORWARD => (depth, distance + dist),
-        Direction::DOWN => (depth + dist, distance),
-        Direction::UP => (depth - dist, distance),
+        Direction::Forward => (depth, distance + dist),
+        Direction::Down => (depth + dist, distance),
+        Direction::Up => (depth - dist, distance),
     });
 
-    return depth * distance;
+    depth * distance
 }
 
 ///
@@ -58,10 +58,10 @@ pub fn part2(input: &str) -> i32 {
 
     let (_, depth, distance) =
         iter.fold((0, 0, 0), |(aim, depth, distance), (dir, dist)| match dir {
-            Direction::FORWARD => (aim, depth + aim * dist, distance + dist),
-            Direction::DOWN => (aim + dist, depth, distance),
-            Direction::UP => (aim - dist, depth, distance),
+            Direction::Forward => (aim, depth + aim * dist, distance + dist),
+            Direction::Down => (aim + dist, depth, distance),
+            Direction::Up => (aim - dist, depth, distance),
         });
 
-    return depth * distance;
+    depth * distance
 }

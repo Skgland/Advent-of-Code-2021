@@ -28,13 +28,13 @@ pub fn part1(input: &str) -> u32 {
     let mut iter = parse_input(input).peekable();
 
     let bit_count = iter.peek().unwrap().len();
-    let mut BITS = vec![0; bit_count];
+    let mut bit_vector = vec![0; bit_count];
 
     for bits in iter {
         for (idx, bit) in bits.iter().enumerate() {
             match bit {
-                b'0' => BITS[idx] -= 1,
-                b'1' => BITS[idx] += 1,
+                b'0' => bit_vector[idx] -= 1,
+                b'1' => bit_vector[idx] += 1,
                 _ => {}
             }
         }
@@ -42,7 +42,7 @@ pub fn part1(input: &str) -> u32 {
 
     let mut gamma = 0;
 
-    for (idx, bit) in BITS.iter().enumerate() {
+    for (idx, bit) in bit_vector.iter().enumerate() {
         gamma |= ((*bit > 0) as u32) << (bit_count - 1 - idx)
     }
 
@@ -50,7 +50,7 @@ pub fn part1(input: &str) -> u32 {
 
     println!("{}, {}, {}", gamma, epsilon, mask(bit_count));
 
-    return gamma * epsilon;
+    gamma * epsilon
 }
 
 ///
@@ -102,11 +102,11 @@ pub fn part2(input: &str) -> u32 {
                 result |= 1 << idx;
             }
         }
-        return result;
+        result
     }
 
     let oxygen_generator = reduce_list(&mut input_list.clone(), true);
     let co2_scrubber = reduce_list(&mut input_list, false);
 
-    return oxygen_generator * co2_scrubber;
+    oxygen_generator * co2_scrubber
 }

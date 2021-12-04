@@ -23,7 +23,7 @@ pub fn part1(input: &str) -> u32 {
         last = current
     }
 
-    return counter;
+    counter
 }
 
 ///
@@ -54,5 +54,5 @@ pub fn part2(input: &str) -> u32 {
         window3 = current;
     }
 
-    return counter;
+    counter
 }
