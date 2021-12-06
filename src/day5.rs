@@ -66,7 +66,6 @@ pub fn both(input: &str, filter: bool) -> usize {
             acc
         })
         .iter()
-        .map(|value @ (key, count)| value)
         .filter(|&(&_, &value)| value)
         .count()
 }
