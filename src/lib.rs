@@ -1,3 +1,17 @@
+#[macro_export]
+macro_rules! run {
+    ($day:ident, $part:ident) => {
+        fn main() {
+            let result = aoc2021::$day::$part(include_str!(concat!(
+                "../../input/",
+                stringify!($day),
+                ".txt"
+            )));
+            println!("{}", result)
+        }
+    };
+}
+
 pub mod day1;
 pub mod day2;
 pub mod day3;
