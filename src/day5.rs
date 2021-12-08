@@ -70,25 +70,34 @@ pub fn both(input: &str, filter: bool) -> usize {
         .count()
 }
 
-///
-///```rust
-/// # use aoc2021::day5::part1;
-/// let input = include_str!("../input/day5.example.txt");
-///
-/// assert_eq!(part1(input), 5);
-/// ```
-///
 pub fn part1(input: &str) -> usize {
     both(input, true)
 }
 
-///
-///```rust
-/// # use aoc2021::day5::part2;
-/// let input = include_str!("../input/day5.example.txt");
-/// assert_eq!(part2(input), 12);
-/// ```
-///
 pub fn part2(input: &str) -> usize {
     both(input, false)
+}
+
+#[test]
+fn part1_example() {
+    let input = include_str!("../input/day5.example.txt");
+    assert_eq!(part1(input), 5);
+}
+
+#[test]
+fn part1_full() {
+    let input = include_str!(concat!("../input/day5.txt"));
+    assert_eq!(part1(input), 5084);
+}
+
+#[test]
+fn part2_example() {
+    let input = include_str!("../input/day5.example.txt");
+    assert_eq!(part2(input), 12);
+}
+
+#[test]
+fn part2_full() {
+    let input = include_str!(concat!("../input/day5.txt"));
+    assert_eq!(part2(input), 17882);
 }

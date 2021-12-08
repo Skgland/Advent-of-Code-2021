@@ -2,14 +2,6 @@ fn parse_input(input: &str) -> impl Iterator<Item = i32> + Clone + '_ {
     input.split(',').map(|elem| elem.parse().unwrap())
 }
 
-///
-///```rust
-/// # use aoc2021::day7::part1;
-/// let input = include_str!("../input/day7.example.txt");
-///
-/// assert_eq!(part1(input), 37);
-/// ```
-///
 pub fn part1(input: &str) -> i32 {
     let mut iter: Vec<_> = parse_input(input).collect();
     iter.sort_unstable();
@@ -18,13 +10,6 @@ pub fn part1(input: &str) -> i32 {
     iter.iter().map(|elem| (elem - median).abs()).sum()
 }
 
-///
-///```rust
-/// # use aoc2021::day7::part2;
-/// let input = include_str!("../input/day7.example.txt");
-/// assert_eq!(part2(input), 168);
-/// ```
-///
 pub fn part2(input: &str) -> i32 {
     let mut iter: Vec<_> = parse_input(input).collect();
     iter.sort_unstable();
@@ -42,4 +27,28 @@ pub fn part2(input: &str) -> i32 {
         .map(|dest| iter.iter().map(|start| cost((start - dest).abs())).sum())
         .min()
         .unwrap()
+}
+
+#[test]
+fn part1_example() {
+    let input = include_str!("../input/day7.example.txt");
+    assert_eq!(part1(input), 37);
+}
+
+#[test]
+fn part1_full() {
+    let input = include_str!(concat!("../input/day7.txt"));
+    assert_eq!(part1(input), 348996);
+}
+
+#[test]
+fn part2_example() {
+    let input = include_str!("../input/day7.example.txt");
+    assert_eq!(part2(input), 168);
+}
+
+#[test]
+fn part2_full() {
+    let input = include_str!(concat!("../input/day7.txt"));
+    assert_eq!(part2(input), 98231647);
 }

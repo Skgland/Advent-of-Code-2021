@@ -24,25 +24,34 @@ pub fn both(input: &str, days: u32) -> usize {
     counter
 }
 
-///
-///```rust
-/// # use aoc2021::day6::part1;
-/// let input = include_str!("../input/day6.example.txt");
-///
-/// assert_eq!(part1(input), 5934);
-/// ```
-///
 pub fn part1(input: &str) -> usize {
     both(input, 80)
 }
 
-///
-///```rust
-/// # use aoc2021::day6::part2;
-/// let input = include_str!("../input/day6.example.txt");
-/// assert_eq!(part2(input), 26984457539);
-/// ```
-///
 pub fn part2(input: &str) -> usize {
     both(input, 256)
+}
+
+#[test]
+fn part1_example() {
+    let input = include_str!("../input/day6.example.txt");
+    assert_eq!(part1(input), 5934);
+}
+
+#[test]
+fn part1_full() {
+    let input = include_str!(concat!("../input/day6.txt"));
+    assert_eq!(part1(input), 349549);
+}
+
+#[test]
+fn part2_example() {
+    let input = include_str!("../input/day6.example.txt");
+    assert_eq!(part2(input), 26984457539);
+}
+
+#[test]
+fn part2_full() {
+    let input = include_str!(concat!("../input/day6.txt"));
+    assert_eq!(part2(input), 1589590444365);
 }

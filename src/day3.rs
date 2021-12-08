@@ -4,26 +4,15 @@ fn parse_input(input: &str) -> impl Iterator<Item = &[u8]> + '_ {
     input.lines().map(|str| str.as_bytes())
 }
 
-///
+/// Produces a bit mask with the lower n bits set
 ///```rust
 /// # use aoc2021::day3::mask;
-///
 /// assert_eq!(mask(5), 0b11111);
-/// ```
-///
-
+///```
 pub const fn mask(bits: usize) -> u32 {
     (1 << bits) - 1
 }
 
-///
-///```rust
-/// # use aoc2021::day3::part1;
-/// let input = include_str!("../input/day3.example.txt");
-///
-/// assert_eq!(part1(input), 22 * 9);
-/// ```
-///
 pub fn part1(input: &str) -> u32 {
     let mut iter = parse_input(input).peekable();
 
@@ -53,13 +42,6 @@ pub fn part1(input: &str) -> u32 {
     gamma * epsilon
 }
 
-///
-///```rust
-/// # use aoc2021::day3::part2;
-/// let input = include_str!("../input/day3.example.txt");
-/// assert_eq!(part2(input), 230);
-/// ```
-///
 pub fn part2(input: &str) -> u32 {
     let mut input_list: Vec<_> = parse_input(input).collect();
 
@@ -109,4 +91,28 @@ pub fn part2(input: &str) -> u32 {
     let co2_scrubber = reduce_list(&mut input_list, false);
 
     oxygen_generator * co2_scrubber
+}
+
+#[test]
+fn part1_example() {
+    let input = include_str!("../input/day3.example.txt");
+    assert_eq!(part1(input), 22 * 9);
+}
+
+#[test]
+fn part1_full() {
+    let input = include_str!(concat!("../input/day3.txt"));
+    assert_eq!(part1(input), 3242606);
+}
+
+#[test]
+fn part2_example() {
+    let input = include_str!("../input/day3.example.txt");
+    assert_eq!(part2(input), 23 * 10);
+}
+
+#[test]
+fn part2_full() {
+    let input = include_str!(concat!("../input/day3.txt"));
+    assert_eq!(part2(input), 4856080);
 }

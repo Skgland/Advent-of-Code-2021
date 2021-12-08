@@ -2,14 +2,6 @@ fn parse_input(input: &str) -> impl Iterator<Item = u32> + '_ {
     input.lines().map(|line| line.parse().unwrap())
 }
 
-///
-///```rust
-/// # use aoc2021::day1::part1;
-/// let input = include_str!("../input/day1.example.txt");
-///
-/// assert_eq!(part1(input), 7);
-/// ```
-///
 pub fn part1(input: &str) -> u32 {
     let mut iter = parse_input(input);
 
@@ -26,13 +18,6 @@ pub fn part1(input: &str) -> u32 {
     counter
 }
 
-///
-///```rust
-/// # use aoc2021::day1::part2;
-/// let input = include_str!("../input/day1.example.txt");
-/// assert_eq!(part2(input), 5);
-/// ```
-///
 pub fn part2(input: &str) -> u32 {
     let mut iter = parse_input(input);
 
@@ -55,4 +40,28 @@ pub fn part2(input: &str) -> u32 {
     }
 
     counter
+}
+
+#[test]
+fn part1_example() {
+    let input = include_str!(concat!("../input/day1.example.txt"));
+    assert_eq!(part1(input), 7);
+}
+
+#[test]
+fn part1_full() {
+    let input = include_str!(concat!("../input/day1.txt"));
+    assert_eq!(part1(input), 1292);
+}
+
+#[test]
+fn part2_example() {
+    let input = include_str!("../input/day1.example.txt");
+    assert_eq!(part2(input), 5);
+}
+
+#[test]
+fn part2_full() {
+    let input = include_str!(concat!("../input/day1.txt"));
+    assert_eq!(part2(input), 1262);
 }

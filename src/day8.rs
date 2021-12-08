@@ -99,47 +99,55 @@ fn parse_input(input: &str) -> impl Iterator<Item = Sequence> + '_ {
     })
 }
 
-///
-///```rust
-/// # use aoc2021::day8::part1;
-/// let input = include_str!("../input/day8.example1.txt");
-///
-/// assert_eq!(part1(input), 0);
-/// ```
-///
-///```rust
-/// # use aoc2021::day8::part1;
-/// let input = include_str!("../input/day8.example2.txt");
-///
-/// assert_eq!(part1(input), 26);
-/// ```
 pub fn part1(input: &str) -> usize {
     parse_input(input)
         .map(|seq| {
-            println!("{:?}", seq);
             let res = seq
                 .output
                 .iter()
                 .filter(|seg| matches!(seg.count_ones(), 2 | 3 | 4 | 7))
                 .count();
-            println!("{}", res);
             res
         })
         .sum()
 }
 
-///
-///```rust
-/// # use aoc2021::day8::part2;
-/// let input = include_str!("../input/day8.example1.txt");
-/// assert_eq!(part2(input), 5353);
-/// ```
-///```rust
-/// # use aoc2021::day8::part2;
-/// let input = include_str!("../input/day8.example2.txt");
-/// assert_eq!(part2(input), 61229);
-/// ```
-///
 pub fn part2(input: &str) -> usize {
     parse_input(input).map(|sequence| sequence.decode()).sum()
+}
+
+#[test]
+fn part1_example1() {
+    let input = include_str!("../input/day8.example1.txt");
+    assert_eq!(part1(input), 0);
+}
+
+#[test]
+fn part1_example2() {
+    let input = include_str!("../input/day8.example2.txt");
+    assert_eq!(part1(input), 26);
+}
+
+#[test]
+fn part1_full() {
+    let input = include_str!(concat!("../input/day8.txt"));
+    assert_eq!(part1(input), 397);
+}
+
+#[test]
+fn part2_example1() {
+    let input = include_str!("../input/day8.example1.txt");
+    assert_eq!(part2(input), 5353);
+}
+
+#[test]
+fn part2_example2() {
+    let input = include_str!("../input/day8.example2.txt");
+    assert_eq!(part2(input), 61229);
+}
+
+#[test]
+fn part2_full() {
+    let input = include_str!(concat!("../input/day8.txt"));
+    assert_eq!(part2(input), 1027422);
 }
