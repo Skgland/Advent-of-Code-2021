@@ -1,5 +1,6 @@
 fn parse_input(input: &str) -> impl Iterator<Item = u32> + '_ {
-    todo!("parse_input WIP")
+    todo!("parse_input WIP");
+    std::iter::empty()
 }
 
 ///
