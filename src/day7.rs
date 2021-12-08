@@ -12,7 +12,7 @@ fn parse_input(input: &str) -> impl Iterator<Item = i32> + Clone + '_ {
 ///
 pub fn part1(input: &str) -> i32 {
     let mut iter: Vec<_> = parse_input(input).collect();
-    iter.sort();
+    iter.sort_unstable();
     let median = iter[iter.len() / 2];
 
     iter.iter().map(|elem| (elem - median).abs()).sum()
@@ -27,7 +27,7 @@ pub fn part1(input: &str) -> i32 {
 ///
 pub fn part2(input: &str) -> i32 {
     let mut iter: Vec<_> = parse_input(input).collect();
-    iter.sort();
+    iter.sort_unstable();
 
     let min = iter.first().unwrap();
     let max = iter.last().unwrap();
