@@ -1,7 +1,19 @@
 use std::io::Write;
 
 fn main() {
-    let day = std::env::args().nth(1).unwrap().parse::<u8>().unwrap();
+    let day_param = if let Some(first_param) = std::env::args().nth(1) {
+        first_param
+    } else {
+        eprint!("Not enough arguments!\nPlease provide number for the day to generate!");
+        return;
+    };
+
+    let day = if let Ok(day) = day_param.parse::<u8>() {
+        day
+    } else {
+        eprint!("Failed to parse u8!\nPlease provide number for the day to generate!");
+        return;
+    };
 
     let mut lib_file = std::fs::OpenOptions::new()
         .append(true)

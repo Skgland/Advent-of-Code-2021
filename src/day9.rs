@@ -1,3 +1,5 @@
+#![allow(clippy::ptr_arg)]
+
 use std::collections::{HashSet, VecDeque};
 
 fn parse_input(input: &str) -> Vec<Vec<u8>> {
