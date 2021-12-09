@@ -1,45 +1,36 @@
+use std::collections::VecDeque;
+
 fn parse_input(input: &str) -> impl Iterator<Item = u32> + '_ {
     input.lines().map(|line| line.parse().unwrap())
 }
 
-pub fn part1(input: &str) -> u32 {
+pub fn both(input: &str, window_size: usize) -> u32 {
     let mut iter = parse_input(input);
 
-    let mut last = iter.next().unwrap();
+    let mut window = VecDeque::with_capacity(window_size);
+
+    window.extend((&mut iter).take(window_size));
 
     let mut counter = 0;
+
     for current in iter {
+        let last = window.pop_front().unwrap();
+        window.push_back(current);
+
         if current > last {
             counter += 1;
         }
-        last = current
     }
 
     counter
 }
 
+pub fn part1(input: &str) -> u32 {
+    both(input, 1)
+}
+
 pub fn part2(input: &str) -> u32 {
-    let mut iter = parse_input(input);
-
-    let mut window1 = iter.next().unwrap();
-    let mut window2 = iter.next().unwrap();
-    let mut window3 = iter.next().unwrap();
-
-    window2 += window3;
-    window1 += window2;
-
-    let mut counter = 0;
-
-    for current in iter {
-        if window2 + current > window1 {
-            counter += 1;
-        }
-        window1 = window2 + current;
-        window2 = window3 + current;
-        window3 = current;
-    }
-
-    counter
+    both(input, 3)
 }
 
 #[test]
