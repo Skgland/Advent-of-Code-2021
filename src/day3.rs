@@ -37,8 +37,6 @@ pub fn part1(input: &str) -> u32 {
 
     let epsilon = (!gamma) & mask(bit_count);
 
-    println!("{}, {}, {}", gamma, epsilon, mask(bit_count));
-
     gamma * epsilon
 }
 

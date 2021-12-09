@@ -90,8 +90,6 @@ pub fn both(input: &str, want: DesiredResult) -> u32 {
         }
     }
 
-    println!("{}, {}", balls[rounds], remaining_score);
-
     balls[rounds] * remaining_score
 }
 
