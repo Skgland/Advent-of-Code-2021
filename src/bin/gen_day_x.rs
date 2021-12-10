@@ -38,6 +38,18 @@ fn main() {
         .open(&format!("src/bin/day{}-2.rs", day))
         .unwrap();
 
+    let _example_input = std::fs::OpenOptions::new()
+        .write(true)
+        .create_new(true)
+        .open(&format!("input/day{}.example.txt", day))
+        .unwrap();
+
+    let _input = std::fs::OpenOptions::new()
+        .write(true)
+        .create_new(true)
+        .open(&format!("input/day{}.txt", day))
+        .unwrap();
+
     writeln!(lib_file, "pub mod day{};", day).unwrap();
     write!(
         mod_file,
