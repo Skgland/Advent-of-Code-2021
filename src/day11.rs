@@ -47,7 +47,7 @@ fn iterate(input: &mut [[u8; 10]; 10]) -> usize {
 
     while let Some(elem) = to_flash.pop() {
         if flashed.insert(elem) {
-            let mut neighbours = neighbours(elem.0 as isize, elem.1 as isize, &input);
+            let mut neighbours = neighbours(elem.0 as isize, elem.1 as isize, input);
             neighbours.iter().for_each(|&(x, y)| input[x][y] += 1);
             neighbours.retain(|elem| input[elem.0][elem.1] > 9);
             to_flash.extend(neighbours)
