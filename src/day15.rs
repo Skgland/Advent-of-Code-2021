@@ -31,6 +31,7 @@ struct HeapEntry {
     pos: (usize, usize),
 }
 
+#[allow(clippy::ptr_arg)]
 pub fn traverse(map: &Vec<Vec<u8>>, multiplier: usize) -> u32 {
     let mut candidates = HashMap::from([((0, 0), 0)]);
     let mut done = HashSet::new();

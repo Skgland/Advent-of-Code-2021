@@ -26,11 +26,8 @@ fn parse_input(input: &str) -> Input {
         map
     });
     let pairs = sequence.windows(2).fold(HashMap::new(), |mut map, elem| {
-        match elem {
-            [c1, c2] => {
-                *map.entry((*c1, *c2)).or_default() += 1;
-            }
-            _ => {}
+        if let [c1, c2] = elem {
+            *map.entry((*c1, *c2)).or_default() += 1;
         }
         map
     });
