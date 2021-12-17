@@ -26,16 +26,14 @@ fn main() {
         .open(&format!("src/day{}.rs", day))
         .unwrap();
 
-    let mut bin_part1 = std::fs::OpenOptions::new()
-        .write(true)
-        .create_new(true)
-        .open(&format!("src/bin/day{}-1.rs", day))
-        .unwrap();
+    let bin_file_path = "src/bin/run.rs";
 
-    let mut bin_part2 = std::fs::OpenOptions::new()
+    let bin_old = std::fs::read_to_string(bin_file_path).unwrap();
+
+    let mut run_bin = std::fs::OpenOptions::new()
         .write(true)
-        .create_new(true)
-        .open(&format!("src/bin/day{}-2.rs", day))
+        .append(false)
+        .open(bin_file_path)
         .unwrap();
 
     let _example_input = std::fs::OpenOptions::new()
@@ -59,20 +57,14 @@ fn main() {
             .replace("partX", "part1")
     )
     .unwrap();
+
     write!(
-        bin_part1,
+        run_bin,
         "{}",
-        include_str!("../../template/bin.rs")
-            .replace("dayX", &format!("day{}", day))
-            .replace("partX", "part1")
-    )
-    .unwrap();
-    write!(
-        bin_part2,
-        "{}",
-        include_str!("../../template/bin.rs")
-            .replace("dayX", &format!("day{}", day))
-            .replace("partX", "part2")
+        bin_old.replace(
+            "=> default\n",
+            &format!("| day{}\n            => default\n", day)
+        )
     )
     .unwrap();
 }
