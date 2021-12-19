@@ -52,8 +52,8 @@ impl SnailNumber {
                     right: _,
                 } => {
                     next_right = Some(&mut self.right);
-                    match inner.as_ref() {
-                        &SnailNumber {
+                    match *inner.as_ref() {
+                        SnailNumber {
                             left: SnailElement::Literal(left_value),
                             right: SnailElement::Literal(right_value),
                         } => {
@@ -70,8 +70,8 @@ impl SnailNumber {
                     right: SnailElement::Recursion(inner),
                 } => {
                     next_left = Some(&mut self.left);
-                    match inner.as_ref() {
-                        &SnailNumber {
+                    match *inner.as_ref() {
+                        SnailNumber {
                             left: SnailElement::Literal(left_value),
                             right: SnailElement::Literal(right_value),
                         } => {
