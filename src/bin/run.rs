@@ -10,8 +10,9 @@ macro_rules! run {
 }
 
 macro_rules! run_arms {
-    ( match ($day:ident, $part:ident) => { $(|)? $( $id:ident)|+ => default }) => {
+    ( match ($day:ident, $part:ident) => {  $(pat $pat:pat => $expr:block)*, $( $id:ident)|+ => default }) => {
         match ($day.as_str(), $part.as_str()) {
+            $($pat => $expr)*
             $((stringify!($id), "1") => {
                 run!($id, part1);
             }
@@ -33,7 +34,11 @@ pub fn main() {
 
     run_arms! {
         match (day, part) => {
-            | day1
+            pat ("day24", "code") => {
+                let code = aoc2021::day24::part1_instructions_to_code(include_str!("../../input/day24.txt"));
+                println!("{}", code);
+            },
+            day1
             | day2
             | day3
             | day4
@@ -56,6 +61,7 @@ pub fn main() {
             | day21
             | day22
             | day23
+            | day24
             => default
         }
     }
