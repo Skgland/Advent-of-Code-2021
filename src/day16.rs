@@ -308,7 +308,9 @@ fn part2_example4() {
 #[test]
 fn part2_example5() {
     let input = "9C0141080250320F1802104A08";
-    assert_eq!(part2(input), (1 + 3 == 2 * 2) as usize);
+    #[allow(clippy::eq_op)]
+    let result = (1 + 3 == 2 * 2) as usize;
+    assert_eq!(part2(input), result);
 }
 
 #[test]

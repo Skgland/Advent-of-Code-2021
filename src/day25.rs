@@ -99,7 +99,7 @@ pub fn part1(input: &str) -> u32 {
     iterations
 }
 
-pub fn part2(input: &str) -> u32 {
+pub fn part2(_input: &str) -> u32 {
     println!("There is no part 2!");
     0
 }
